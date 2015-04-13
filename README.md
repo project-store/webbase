@@ -42,6 +42,12 @@ jar包总共几十M,下载时候可能略慢请稍等.
 
 项目访问目录为 main.jsp.
 
+## 演示地址
+[http://webbase.aliapp.com/](http://webbase.aliapp.com/)
+
+admin/111111
+000004/111111
+
 ###项目截图
 ![image](http://webbase.oss-cn-qingdao.aliyuncs.com/01.png)
 
@@ -69,8 +75,7 @@ jar包总共几十M,下载时候可能略慢请稍等.
 
 ![image](http://webbase.oss-cn-qingdao.aliyuncs.com/10.png)
 
-## 演示地址
-[http://webbase.aliapp.com/](http://webbase.aliapp.com/)
+
 
 
 ## 捐赠
