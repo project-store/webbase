@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:component-scan base-package="com.ass.*.dao"></context:component-scan>
+	<context:component-scan base-package="com.ass.*.service"></context:component-scan>
+	
+	
+	
+	
+	<bean id="DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<!-- Mysql 连接方式 -->
+		<property name="driverClassName" value="${common.db.driver}" />
+		<property name="url" value="${common.db.url}" />
+		<property name="username" value="${common.db.username}" />
+		<property name="password" value="${common.db.password}" />
+		
+		<!-- oracle 连接方式
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+        <property name="url" value="jdbc:oracle:thin:@${common.db.url}:${common.db.uid}" />
+        <property name="username" value="${common.db.username}" />
+        <property name="password" value="${common.db.password}" />
+		 -->
+		
+		
+		<!-- 最大连接数据库连接数 -->
+		<property name="maxActive" value="500" />
+		<!-- 最大等待连接中的数量   0标识没有限制 -->
+		<property name="maxIdle" value="10" />
+		<!-- 最大等待毫秒数  超时报错 -->
+		<property name="maxWait" value="500" />
+		<property name="defaultAutoCommit" value="true" />
+		<!-- 是否自我中断 -->
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="60" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<property name="dataSource">
+            <ref bean="DataSource" />
+        </property>
+        <!-- MyBatis 的 XML 配置文件路径 -->
+        <property name="configLocation" value="/WEB-INF/config/mybatisSqlMapConfig.xml" />
+		<!-- 扫描自动生成的xml文件 --><!-- Mybatis XML映射文件 -->
+		
+        <property name="mapperLocations"  >
+        	<list><!-- Mybatis XML映射文件 -->
+        		<value>classpath*:com/ass/common/generated/xml/*.xml</value>
+        		<!-- 扫描自己写的xml文件--> 
+        		<value>classpath*:com/ass/*/xml/*.xml</value>
+        	</list>	
+        </property>
+        
+    </bean>
+    
+    <!-- 
+    	scope="prototype"
+    	 停止服务器的时候报的下面错误
+    	DisposableBeanAdapter: Invocation of destroy method 'close' failed on bean with name 'SqlSessionTemplate'
+java.lang.UnsupportedOperationException: Manual close is not allowed over a Spring managed SqlSession
+     -->
+    <bean id="SqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"  scope="prototype">
+    	<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    </bean>
+	
+	<!-- 注册单个  mybatisGenerator  自动生成的 接口文件-->
+	<!-- 
+	<bean id="TestMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">  
+        <property name="mapperInterface" value="com.ass.common.generated.dao.TestMapper" />
+        <property name="sqlSessionTemplate" ref="SqlSessionTemplate" ></property>  
+    </bean>
+     -->
+     <!-- 扫描mybatisGenerator 自动生成的  所有接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+		<property name="basePackage" value="com.ass.common.generated.dao" ></property>
+	</bean>
+	
+	
+	
+	<!-- 数据库事务策略-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="DataSource" />
+        </property>
+    </bean>
+    
+    
+	 <!-- -->
+	<tx:advice id="sqlTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!--
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="ins*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			-->
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	 
+	<aop:config proxy-target-class="true">
+	
+		<aop:advisor pointcut="execution( * com.ass.*.service.*.*(..))" advice-ref="sqlTxAdvice" />
+		 
+	</aop:config> 
+	
+
+</beans>

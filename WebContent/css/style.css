@@ -1,0 +1,360 @@
+/*
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+*/
+/* reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body {
+	background:#86b4cc;/*4e525b*/
+	font-family: 'Open Sans', sans-serif;
+	font-size: 100%;
+}
+
+.login {
+	width: 470px;
+	position: absolute;
+	left: 35%;
+	top: 21%;
+}
+/**login-form**/
+.login-form {
+	width: 475px;
+	min-height: 482px;
+	margin: 0 auto;
+	position: relative;
+	z-index:5;
+	background:url(../images/form_bg1.png) 100% 100% no-repeat;
+	background-size: 100%;
+	box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: -1px 1px 10px rgba(0,0,0,0.5);
+	-webkit-box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+.header-top
+{
+	position: absolute;
+	left: 198px;
+	top: -72px;
+}
+/**header**/
+.login-form .header {
+	padding: 2.5em 2em 2em 2em;
+	text-align: center;
+}
+
+.login-form .header h1 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 900;
+	font-size: 2.3em;
+	color: #36383c;
+}
+
+.login-form .header span {
+	font-size: 1.4em;
+	color: #7c818b;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+}
+
+/**content**/
+
+.login-form .content{
+	margin: 0 30px 25px 30px;
+	background: rgb(229,231,233);
+	background: -moz-radial-gradient(center, ellipse cover,  rgb(229,231,233) 0%, rgb(229,231,233) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgb(229,231,233)), color-stop(100%,rgb(229,231,233)));
+	background: -webkit-radial-gradient(center, ellipse cover,  rgb(229,231,233) 0%,rgb(229,231,233) 100%);
+	background: -o-radial-gradient(center, ellipse cover,  rgb(229,231,233) 0%,rgb(229,231,233) 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  rgb(229,231,233) 0%,rgb(229,231,233) 100%);
+	background: radial-gradient(ellipse at center,  rgb(229,231,233) 0%,rgb(229,231,233) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e7e9', endColorstr='#e5e7e9',GradientType=1 );
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	border-radius: 5px;
+
+}
+/* Input field */
+.login-form .content .input {
+	width: 84.4%;
+	padding: 20px 30px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 900;
+	font-size: 1.4em;
+	color: #6f7278;
+	background: #e5e7e9;
+	border: 1px solid #e5e7e9;
+	outline: none;	
+	border-top-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+/* Second input field */
+.login-form .content .username,.login-form .content .password
+{
+	border-bottom: 1px solid #FFF;
+	box-shadow: inset 0 0px 0px rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-webkit-box-shadow: inset 0 -1px 0px rgba(185, 185, 185, 0.5);
+	margin: 2px 0px 0px 2px;
+}
+.login-form .content .password, .login-form .content .pass-icon {
+	margin-top: 0px;
+}
+
+.login-form .content .input:hover {
+	color: #414848;
+}
+
+.login-form .content .input:focus {
+	color: #6f7278;
+}
+/* Login button */
+.login_button  {
+	margin: 0 30px 25px 30px;
+}
+.login-form .login_button .button {
+	padding: 10px 25px;
+	width:100%;
+	font-weight: 800;
+	font-size: 2.1em;
+	letter-spacing: 1.2px;
+	color: #F1F1F1;
+	margin:0px;
+	text-shadow: 1px 2px 1px rgba(82, 82, 82, 0.92);
+	background: url(../images/buttonbg2.png);
+	border:1px solid #2a8b7b;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+	outline: none;
+	-webkit-appearance: none;
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+}
+.login-form .login_button .button:focus {
+	position: relative;
+	bottom: -1px;
+	background: url(../images/buttonbg2.png);
+	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+	-webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+}
+.login-form .login_button .button:hover{
+	background: rgb(124,212,201);
+	background: -moz-radial-gradient(center, ellipse cover,  rgb(124,212,201) 0%, rgb(99,202,189) 0%, rgb(85,194,179) 0%, rgb(105,207,196) 0%, rgb(114,209,197) 0%, rgb(112,211,200) 0%, rgb(94,200,187) 0%, rgb(96,207,195) 0%, rgb(103,208,196) 0%, rgb(109,209,198) 0%, rgb(98,201,188) 0%, rgb(122,213,202) 0%, rgb(127,212,201) 0%, rgb(98,202,189) 0%, rgb(173,229,223) 0%, rgb(107,208,196) 0%, rgb(71,183,166) 100%, rgb(87,192,176) 100%, rgb(101,205,193) 100%, rgb(71,186,169) 100%, rgb(69,181,163) 100%, rgb(77,188,173) 100%, rgb(83,197,183) 100%, rgb(73,184,167) 100%, rgb(60,176,157) 100%, rgb(80,187,171) 100%, rgb(87,193,177) 100%, rgb(93,201,188) 100%, rgb(72,183,166) 100%, rgb(75,186,169) 100%, rgb(104,205,194) 100%, rgb(82,190,176) 100%, rgb(64,177,159) 100%, rgb(84,189,173) 100%, rgb(86,195,180) 100%, rgb(87,194,179) 100%, rgb(82,189,174) 100%, rgb(82,191,175) 100%, rgb(71,183,165) 100%, rgb(75,185,169) 100%, rgb(73,188,173) 100%, rgb(97,199,185) 100%, rgb(91,200,187) 100%, rgb(58,176,155) 100%, rgb(65,181,162) 100%, rgb(63,177,158) 100%, rgb(61,178,159) 100%, rgb(67,180,162) 100%, rgb(104,202,189) 100%, rgb(88,196,182) 100%, rgb(80,191,174) 100%, rgb(73,184,166) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgb(124,212,201)), color-stop(0%,rgb(99,202,189)), color-stop(0%,rgb(85,194,179)), color-stop(0%,rgb(105,207,196)), color-stop(0%,rgb(114,209,197)), color-stop(0%,rgb(112,211,200)), color-stop(0%,rgb(94,200,187)), color-stop(0%,rgb(96,207,195)), color-stop(0%,rgb(103,208,196)), color-stop(0%,rgb(109,209,198)), color-stop(0%,rgb(98,201,188)), color-stop(0%,rgb(122,213,202)), color-stop(0%,rgb(127,212,201)), color-stop(0%,rgb(98,202,189)), color-stop(0%,rgb(173,229,223)), color-stop(0%,rgb(107,208,196)), color-stop(100%,rgb(71,183,166)), color-stop(100%,rgb(87,192,176)), color-stop(100%,rgb(101,205,193)), color-stop(100%,rgb(71,186,169)), color-stop(100%,rgb(69,181,163)), color-stop(100%,rgb(77,188,173)), color-stop(100%,rgb(83,197,183)), color-stop(100%,rgb(73,184,167)), color-stop(100%,rgb(60,176,157)), color-stop(100%,rgb(80,187,171)), color-stop(100%,rgb(87,193,177)), color-stop(100%,rgb(93,201,188)), color-stop(100%,rgb(72,183,166)), color-stop(100%,rgb(75,186,169)), color-stop(100%,rgb(104,205,194)), color-stop(100%,rgb(82,190,176)), color-stop(100%,rgb(64,177,159)), color-stop(100%,rgb(84,189,173)), color-stop(100%,rgb(86,195,180)), color-stop(100%,rgb(87,194,179)), color-stop(100%,rgb(82,189,174)), color-stop(100%,rgb(82,191,175)), color-stop(100%,rgb(71,183,165)), color-stop(100%,rgb(75,185,169)), color-stop(100%,rgb(73,188,173)), color-stop(100%,rgb(97,199,185)), color-stop(100%,rgb(91,200,187)), color-stop(100%,rgb(58,176,155)), color-stop(100%,rgb(65,181,162)), color-stop(100%,rgb(63,177,158)), color-stop(100%,rgb(61,178,159)), color-stop(100%,rgb(67,180,162)), color-stop(100%,rgb(104,202,189)), color-stop(100%,rgb(88,196,182)), color-stop(100%,rgb(80,191,174)), color-stop(100%,rgb(73,184,166)));
+	background: -webkit-radial-gradient(center, ellipse cover,  rgb(124,212,201) 0%,rgb(99,202,189) 0%,rgb(85,194,179) 0%,rgb(105,207,196) 0%,rgb(114,209,197) 0%,rgb(112,211,200) 0%,rgb(94,200,187) 0%,rgb(96,207,195) 0%,rgb(103,208,196) 0%,rgb(109,209,198) 0%,rgb(98,201,188) 0%,rgb(122,213,202) 0%,rgb(127,212,201) 0%,rgb(98,202,189) 0%,rgb(173,229,223) 0%,rgb(107,208,196) 0%,rgb(71,183,166) 100%,rgb(87,192,176) 100%,rgb(101,205,193) 100%,rgb(71,186,169) 100%,rgb(69,181,163) 100%,rgb(77,188,173) 100%,rgb(83,197,183) 100%,rgb(73,184,167) 100%,rgb(60,176,157) 100%,rgb(80,187,171) 100%,rgb(87,193,177) 100%,rgb(93,201,188) 100%,rgb(72,183,166) 100%,rgb(75,186,169) 100%,rgb(104,205,194) 100%,rgb(82,190,176) 100%,rgb(64,177,159) 100%,rgb(84,189,173) 100%,rgb(86,195,180) 100%,rgb(87,194,179) 100%,rgb(82,189,174) 100%,rgb(82,191,175) 100%,rgb(71,183,165) 100%,rgb(75,185,169) 100%,rgb(73,188,173) 100%,rgb(97,199,185) 100%,rgb(91,200,187) 100%,rgb(58,176,155) 100%,rgb(65,181,162) 100%,rgb(63,177,158) 100%,rgb(61,178,159) 100%,rgb(67,180,162) 100%,rgb(104,202,189) 100%,rgb(88,196,182) 100%,rgb(80,191,174) 100%,rgb(73,184,166) 100%);
+	background: -o-radial-gradient(center, ellipse cover,  rgb(124,212,201) 0%,rgb(99,202,189) 0%,rgb(85,194,179) 0%,rgb(105,207,196) 0%,rgb(114,209,197) 0%,rgb(112,211,200) 0%,rgb(94,200,187) 0%,rgb(96,207,195) 0%,rgb(103,208,196) 0%,rgb(109,209,198) 0%,rgb(98,201,188) 0%,rgb(122,213,202) 0%,rgb(127,212,201) 0%,rgb(98,202,189) 0%,rgb(173,229,223) 0%,rgb(107,208,196) 0%,rgb(71,183,166) 100%,rgb(87,192,176) 100%,rgb(101,205,193) 100%,rgb(71,186,169) 100%,rgb(69,181,163) 100%,rgb(77,188,173) 100%,rgb(83,197,183) 100%,rgb(73,184,167) 100%,rgb(60,176,157) 100%,rgb(80,187,171) 100%,rgb(87,193,177) 100%,rgb(93,201,188) 100%,rgb(72,183,166) 100%,rgb(75,186,169) 100%,rgb(104,205,194) 100%,rgb(82,190,176) 100%,rgb(64,177,159) 100%,rgb(84,189,173) 100%,rgb(86,195,180) 100%,rgb(87,194,179) 100%,rgb(82,189,174) 100%,rgb(82,191,175) 100%,rgb(71,183,165) 100%,rgb(75,185,169) 100%,rgb(73,188,173) 100%,rgb(97,199,185) 100%,rgb(91,200,187) 100%,rgb(58,176,155) 100%,rgb(65,181,162) 100%,rgb(63,177,158) 100%,rgb(61,178,159) 100%,rgb(67,180,162) 100%,rgb(104,202,189) 100%,rgb(88,196,182) 100%,rgb(80,191,174) 100%,rgb(73,184,166) 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  rgb(124,212,201) 0%,rgb(99,202,189) 0%,rgb(85,194,179) 0%,rgb(105,207,196) 0%,rgb(114,209,197) 0%,rgb(112,211,200) 0%,rgb(94,200,187) 0%,rgb(96,207,195) 0%,rgb(103,208,196) 0%,rgb(109,209,198) 0%,rgb(98,201,188) 0%,rgb(122,213,202) 0%,rgb(127,212,201) 0%,rgb(98,202,189) 0%,rgb(173,229,223) 0%,rgb(107,208,196) 0%,rgb(71,183,166) 100%,rgb(87,192,176) 100%,rgb(101,205,193) 100%,rgb(71,186,169) 100%,rgb(69,181,163) 100%,rgb(77,188,173) 100%,rgb(83,197,183) 100%,rgb(73,184,167) 100%,rgb(60,176,157) 100%,rgb(80,187,171) 100%,rgb(87,193,177) 100%,rgb(93,201,188) 100%,rgb(72,183,166) 100%,rgb(75,186,169) 100%,rgb(104,205,194) 100%,rgb(82,190,176) 100%,rgb(64,177,159) 100%,rgb(84,189,173) 100%,rgb(86,195,180) 100%,rgb(87,194,179) 100%,rgb(82,189,174) 100%,rgb(82,191,175) 100%,rgb(71,183,165) 100%,rgb(75,185,169) 100%,rgb(73,188,173) 100%,rgb(97,199,185) 100%,rgb(91,200,187) 100%,rgb(58,176,155) 100%,rgb(65,181,162) 100%,rgb(63,177,158) 100%,rgb(61,178,159) 100%,rgb(67,180,162) 100%,rgb(104,202,189) 100%,rgb(88,196,182) 100%,rgb(80,191,174) 100%,rgb(73,184,166) 100%);
+	background: radial-gradient(ellipse at center,  rgb(124,212,201) 0%,rgb(99,202,189) 0%,rgb(85,194,179) 0%,rgb(105,207,196) 0%,rgb(114,209,197) 0%,rgb(112,211,200) 0%,rgb(94,200,187) 0%,rgb(96,207,195) 0%,rgb(103,208,196) 0%,rgb(109,209,198) 0%,rgb(98,201,188) 0%,rgb(122,213,202) 0%,rgb(127,212,201) 0%,rgb(98,202,189) 0%,rgb(173,229,223) 0%,rgb(107,208,196) 0%,rgb(71,183,166) 100%,rgb(87,192,176) 100%,rgb(101,205,193) 100%,rgb(71,186,169) 100%,rgb(69,181,163) 100%,rgb(77,188,173) 100%,rgb(83,197,183) 100%,rgb(73,184,167) 100%,rgb(60,176,157) 100%,rgb(80,187,171) 100%,rgb(87,193,177) 100%,rgb(93,201,188) 100%,rgb(72,183,166) 100%,rgb(75,186,169) 100%,rgb(104,205,194) 100%,rgb(82,190,176) 100%,rgb(64,177,159) 100%,rgb(84,189,173) 100%,rgb(86,195,180) 100%,rgb(87,194,179) 100%,rgb(82,189,174) 100%,rgb(82,191,175) 100%,rgb(71,183,165) 100%,rgb(75,185,169) 100%,rgb(73,188,173) 100%,rgb(97,199,185) 100%,rgb(91,200,187) 100%,rgb(58,176,155) 100%,rgb(65,181,162) 100%,rgb(63,177,158) 100%,rgb(61,178,159) 100%,rgb(67,180,162) 100%,rgb(104,202,189) 100%,rgb(88,196,182) 100%,rgb(80,191,174) 100%,rgb(73,184,166) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7cd4c9', endColorstr='#49b8a6',GradientType=1 );
+
+}
+.user-icon, .pass-icon {
+	width: 70px;
+	height: 75px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	padding-right: 2px;
+	z-index: 3;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+/***side icons****/
+.user-icon {
+	top:147px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	background: rgba(255, 255, 255, 0.78) url(../images/mail.png) no-repeat center;	
+}
+
+.pass-icon {
+	top:221px;
+	background: rgba(255, 255, 255, 0.78) url(../images/lock.png) no-repeat center;
+}
+
+/* Animation */
+.input, .user-icon, .pass-icon, .button, .register {
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+}
+/*****copy right***********/
+.copy_right  {
+color: #fff;
+font-size: 0.85em;
+line-height: 1.8em;
+padding: 20px;
+font-family: 'Open Sans', sans-serif;
+text-align: center;
+}
+.copy_right a {
+color: #4dbfaf;
+-webkit-transition: all 0.3s ease-out;
+-moz-transition: all 0.3s ease-out;
+-ms-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+
+}
+.copy_right a:hover {
+	color:#fff;
+}
+/************start media Queries**********/
+@media only screen and (max-width: 1366px)
+{
+.login {
+	left: 33%;
+}
+}
+@media only screen and (max-width: 1024px)
+{
+.login {
+	left: 27%;
+}
+}
+@media only screen and (max-width: 768px)
+{
+.login {
+	left: 18%;
+}
+}
+@media only screen and (max-width: 640px)
+{
+.login {
+	left: 12%;
+}
+}
+@media only screen and (max-width: 480px)
+{
+.login {
+	left: 10%;
+}
+.login {
+	width: 400px;
+}
+.login-form {
+	width: 400px;
+	min-height: 405px;
+}
+.header-top {
+	left: 162px;
+	top: -76px;
+}
+.login-form .header h1 {
+	font-size: 2em;
+}
+.login-form .header span {
+	font-size: 1.27em;
+}
+.login-form .content .input {
+	width: 80.4%;
+	padding: 16px 30px;
+	font-size: 1.2em;
+}
+.login-form .content .username, .login-form .content .password {
+	margin: 1px 0px 0px 1px;
+}
+.login-form .login_button .button {
+	font-size: 2em;
+}
+.user-icon, .pass-icon {
+	width: 70px;
+	height: 53px;
+}
+.pass-icon {
+	top: 205px;
+}
+}
+@media only screen and (max-width: 320px)
+{
+.login {
+	left: 3%;
+}
+.login {
+	width: 300px;
+}
+.login-form {
+	width: 300px;
+	min-height: 303px;
+}
+.header-top {
+	left: 118px;
+	top: -63px;
+}
+.login-form .header h1 {
+	font-size: 1.5em;
+}
+.login-form .header span {
+	font-size: 1em;
+}
+.login-form .content .input {
+	width: 84.3%;
+	padding: 12px 18px;
+	font-size: 1em;
+}
+.login-form .content .username, .login-form .content .password {
+	margin: 3px 0px 0px 1px;
+}
+.login-form .login_button .button {
+	font-size: 1.5em;
+	padding: 8px 10px;
+}
+.user-icon, .pass-icon {
+	width: 70px;
+	height: 53px;
+}
+/***/
+.header-top img {
+	width: 80%;
+}
+.login-form .header {
+	padding: 1.5em 1em 1em 1em;
+}
+.login-form .content {
+	margin: 0 20px 25px 20px;
+}
+.login_button {
+	margin: 0 20px 25px 20px;
+}
+.user-icon {
+	top: 92px;
+}
+.pass-icon {
+	top: 144px;
+}
+}

@@ -1,0 +1,66 @@
+·   Ehcache默认Cache配置
+ 
+<defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="true"
+        diskSpoolBufferSizeMB="30"
+        maxElementsOnDisk="10000000"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU"
+        />
+ 
+·   SampleCache1配置
+ 
+简单配置，在ehcache.xml文件中有此配置，在使用Ehcache前最好将其删除掉，自己配置。
+ 
+缓存名sampleCache1，内存中最多可缓存10000个Element，其中的element会在闲置5分钟或是存活10分钟之后失效。
+ 
+超过10000element时，element将会输出到磁盘中，输出路径是java.io.tmpdir。
+ 
+<cache name="sampleCache1"
+       maxElementsInMemory="10000"
+       maxElementsOnDisk="1000"
+       eternal="false"
+       overflowToDisk="true"
+       diskSpoolBufferSizeMB="20"
+       timeToIdleSeconds="300"
+       timeToLiveSeconds="600"
+       memoryStoreEvictionPolicy="LFU"
+        />
+ 
+ 
+ 
+ 
+ 
+·   SampleCache2配置
+ 
+Cache名为SampleCache2，内存中最多可以缓存1000个element，超出1000不能输出到磁盘中。缓存是永久有效的。
+ 
+<cache name="sampleCache2"
+       maxElementsInMemory="1000"
+       eternal="true"
+       overflowToDisk="false"
+       memoryStoreEvictionPolicy="FIFO"
+        />
+ 
+·   SampleCache3配置
+ 
+Cache名为SampleCache3。可缓存到磁盘。磁盘缓存将会缓存虚拟机重启期的数据。磁盘缓存失效线程运行间隔时间是10分钟。
+ 
+ 
+ 
+ 
+<cache name="sampleCache3"
+       maxElementsInMemory="500"
+       eternal="false"
+       overflowToDisk="true"
+       timeToIdleSeconds="300"
+       timeToLiveSeconds="600"
+       diskPersistent="true"
+       diskExpiryThreadIntervalSeconds="1"
+       memoryStoreEvictionPolicy="LFU"
+        />

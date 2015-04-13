@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="log_sql">
+
+
+
+	<select id="queryLogs" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		
+		<include refid="BaseDAOImpl.prefixSql" />
+		
+		SELECT 
+			l.id              id,
+			l.comment     	comment,
+			l.create_time 	createTime,
+			u.login_name  	loginName,
+			u.name        	name,
+			tp.codename  businessName 
+	    
+	    FROM t_log l
+		LEFT JOIN t_user u      ON u.id=l.t_user_id
+		LEFT JOIN t_properties tp ON tp.code = l.log_type and tp.codetype='log_type'
+			
+		WHERE l.isdelete=0
+		
+		<if test="operatorId != null">
+			and l.t_user_id= '${operatorId}'
+		</if>
+		<if test="log_type != null">
+			and l.log_type = '${log_type}'
+		</if>
+		<if test="startDate !=null">
+			<![CDATA[  and l.create_time >= '${startDate}'  ]]>
+		</if>
+		
+		<if test="endDate !=null">
+			<![CDATA[  and l.create_time <= '${endDate}'+86400  ]]>
+		</if>
+		order by l.id desc
+		<include refid="BaseDAOImpl.suffixSql" />
+	</select>
+	
+	<!---->
+	<select id="queryLogDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<include refid="BaseDAOImpl.prefixSql" />
+		SELECT
+			 
+			table_name      tableName,
+			field_name      fieldName,
+			record_id       recordId,
+			field_old_value fieldOldValue,
+			field_new_value fieldNewValue
+			
+		FROM t_log_detail
+		
+		WHERE t_log_id = '${tLogId}'
+		
+		ORDER BY tableName,fieldName
+		<include refid="BaseDAOImpl.suffixSql" />
+	</select>
+	
+
+</mapper>

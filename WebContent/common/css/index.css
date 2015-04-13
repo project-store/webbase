@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+/*组织机构树 begin*/
+.tree_dir{
+background: url('../../images/tree/tree_dir.gif') no-repeat;
+}
+.tree_leaf{
+background: url('../../images/tree/tree_leaf.png') no-repeat;
+}
+/*组织机构树 end*/
+
+/*权限树 被选中样式 */
+.checkPer{
+background: url('../../images/tree/tick.png') no-repeat;
+}
+
+
+
+
+
+
+
+
+
+.btn2{
+		margin: 0px 4px !important;
+	}
+
+
+
+
+

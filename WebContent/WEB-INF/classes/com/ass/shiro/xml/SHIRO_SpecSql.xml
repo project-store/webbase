@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SHIRO_SpecSql" >
+	
+	
+
+<!-- 未使用 -->
+<sql id="queryLevel">
+	<if test="queryLevel == all">
+		and code like '${code}%'
+	</if>
+	<if test="queryLevel == sibling">
+		and code = '${code}'
+	</if>
+	<if test="queryLevel == lower">
+		and code like '${code}%' and length(code)> length('${code}')
+ 	</if>
+</sql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+</mapper>

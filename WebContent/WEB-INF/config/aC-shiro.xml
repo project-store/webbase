@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:aop="http://www.springframework.org/schema/aop" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	                       http://www.springframework.org/schema/aop 
+						   http://www.springframework.org/schema/aop/spring-aop.xsd
+						   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	                       
+	default-lazy-init="true">
+
+	<description>Shiro安全配置</description>
+	
+	
+	<!-- 使用默认的WebSecurityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="MyShiroDbRealm" />
+		 <!-- cacheManager,集合spring缓存工厂 -->
+		<!--  <property name="cacheManager" ref="shiroEhcacheManager" />-->
+	</bean>
+
+	<!-- 項目自定义的Realm, 所有accountService依赖的dao都需要用depends-on声明 -->
+	<bean id="MyShiroDbRealm" class="com.ass.shiro.service.MyShiroDbRealm">
+		<!-- 
+		<property name="accountService" ref="accountService"/>
+		 -->
+	</bean>
+	
+	
+	
+		
+	<!-- Shiro Filter 
+		   提示: org.apache.shiro.spring.web.ShiroFilterFactoryBean 的 id 名称必须和 web.xml 的 filter-name 一致
+	-->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+
+		<!-- shiro的核心安全接口  -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 要求登录时的链接 -->
+		<property name="loginUrl" value="/login.do" />
+		<!-- 登陆成功后要跳转的连接 -->
+		<property name="successUrl" value="/"/>
+		<!-- 没有权限要跳转的链接 -->
+    	<property name="unauthorizedUrl" value="/unauthorized.do" />
+    	
+    	<!-- shiro连接约束配置,在这里使用自定义的动态获取资源类 
+    	<property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
+    	-->
+    	<property name="filterChainDefinitions">
+	        <value>
+	            /login.do = authc 
+	            /logout.do = logout
+	            /favicon.ico = anon
+	            /images/** = anon
+	            /css/** = anon
+	            /common/js/jquery-1.10.2.min.js = anon
+	            <!-- 下面的页面，必须登录，如果未登录，就会跳转到登录页面 -->
+	            
+	            /** = authc
+	            <!-- authc必须是验证过的,不能是"remember me",
+	            	而user可以是"remember me",只要Subject包含principal就行。 -->
+	           </value>
+	    </property>
+    	
+	</bean>
+	
+	
+	<!-- 自定义对 shiro的连接约束,结合shiroSecurityFilter实现动态获取资源,  默认的连接配置 -->
+	<bean id="chainDefinitionSectionMetaSource" class="com.ass.shiro.service.ChainDefinitionSectionMetaSource">
+	       
+	    <property name="filterChainDefinitions">
+	        <value>
+	            /login.do = authc 
+	            /favicon.ico = anon
+	            /logout.do = logout
+	            /images/** = anon
+	            <!-- 下面的页面，必须登录，如果未登录，就会跳转到登录页面 -->
+	            
+	            /** = anon
+	            <!-- authc必须是验证过的,不能是"remember me",
+	            	而user可以是"remember me",只要Subject包含principal就行。 -->
+
+	            
+	            <!-- 
+	            anon:  例子/admins/**=anon 没有参数，表示可以匿名使用。
+	            authc: 例如/admins/user/**=authc表示需要认证(登录)才能使用，没有参数
+	            authcBasic：例如/admins/user/**=authcBasic没有参数表示httpBasic认证
+	            user:例如/admins/user/**=user没有参数表示必须存在用户，当登入操作时不做检查
+	            
+	            roles：例子/admins/user/**=roles[admin],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，当有多个参数时，例如admins/user/**=roles["admin,guest"],每个参数通过才算通过，相当于hasAllRoles()方法。
+	            perms：例子/admins/user/**=perms[user:add:*],参数可以写多个，多个时必须加上引号，并且参数之间用逗号分割，例如/admins/user/**=perms["user:add:*,user:modify:*"]，当有多个参数时必须每个参数都通过才通过，想当于isPermitedAll()方法。
+	            rest：  例子/admins/user/**=rest[user],根据请求的方法，相当于/admins/user/**=perms[user:method] ,其中method为post，get，delete等。
+				ssl:例子/admins/user/**=ssl没有参数，表示安全的url请求，协议为https
+				port：  例子/admins/user/**=port[8081],当请求的url的端口不是8081是跳转到schemal://serverName:8081?queryString,其中schmal是协议http或https等，serverName是你访问的host,8081是url配置里port的端口，queryString
+						是你访问的url里的？后面的参数。
+	                        注：anon，authcBasic，auchc，user是认证过滤器，
+					perms，roles，ssl，rest，port是授权过滤器
+	             -->
+	        </value>
+	    </property>
+	</bean> 
+	
+	
+	
+	<!-- 用户授权信息Cache, 采用EhCache
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile"  value="/WEB-INF/config/ehcache/ehcache-shiro.xml"/>
+	</bean> 
+	-->
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<!-- 注解 使用方式，暂时为用到。下面方式没有验证。
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	    <property name="securityManager" ref="securityManager"/>
+	</bean>
+	 -->
+	
+	
+	
+</beans>

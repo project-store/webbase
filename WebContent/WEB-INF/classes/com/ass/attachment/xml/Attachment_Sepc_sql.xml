@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Attachment_Sepc_sql">
+
+
+	
+	<!-- 查询发卡明细 -->
+	<select id="query" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<include refid="BaseDAOImpl.prefixSql" />
+			SELECT  a.id, 
+				a.file_name fileName, 
+				a.file_path filePath,
+				a.buss_type bussType,
+				a.buss_id bussId,
+				a.operator_id operatorId,
+				u.name operatorName,
+				DATE_FORMAT(FROM_UNIXTIME(a.create_time),'%Y-%c-%e') createTime,
+				a.file_suffix fileSuffix,
+				a.remark
+				FROM t_attachment a
+				LEFT JOIN t_user u ON u.id = a.operator_id
+					WHERE a.isdelete = 0
+					<if test="bussType != null">
+						and a.buss_type = '${bussType}'
+					</if>
+					<if test="bussId != null">
+						and a.buss_id = '${bussId}'
+					</if>
+			
+			
+			
+			
+		<include refid="BaseDAOImpl.suffixSql" />
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="workFlow_SpecSql" >
+
+  <cache  type="org.mybatis.caches.ehcache.LoggingEhcache"  >
+			<!-- timeToIdleSeconds缓存创建以后，最后一次访问缓存的日期至失效之时的时间间隔y  有访问， 这个生效-->
+			 <!-- timeToLiveSeconds缓存自创建日期起至失效时的间隔时间x  没有访问，这个生效-->
+			 <!-- memoryStoreEvictionPolicy ：内存存储与释放策略。有三个值：
+					LRU －least recently used
+					LFU －least frequently used
+					FIFO－first in first out, the oldest element by creation time -->
+		    <property name="timeToIdleSeconds" value="3600"/>
+		    <property name="timeToLiveSeconds" value="3600"/>
+		    <property name="maxEntriesLocalHeap" value="1000"/>
+		    <property name="maxEntriesLocalDisk" value="10000000"/>
+		    <property name="memoryStoreEvictionPolicy" value="LRU"/>
+		</cache>
+  
+  
+  <select id="myApplyList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  <include refid="BaseDAOImpl.prefixSql"/>
+  
+  	SELECT 
+		task.id,
+		task.title,
+		task.business_id businessId,
+		task.business_type businessType,
+		task.cur_step curStep,
+		task.participant_id participantId,
+		if(par.name is null, '', par.name) participantName,
+		 
+		if(task.app_date is null, '', DATE_FORMAT(FROM_UNIXTIME(task.app_date),'%Y-%c-%e %H:%i:%s')) appDate,
+		task.apply_user_id applyUserId,
+		task.t_organization_id tOrganizationId,
+		task.status,
+		pro.codename statusName,
+		DATE_FORMAT(FROM_UNIXTIME(task.make_time),'%Y-%c-%e %H:%i:%s') make_time
+	
+	FROM t_workflow_task task 
+	LEFT JOIN t_properties pro ON pro.code = task.status AND pro.codetype = 'workflowtask_status'
+	LEFT JOIN t_user par ON par.id = task.participant_id
+	
+	WHERE task.apply_user_id = ${cur_userid}
+	<if test="title != null">
+		and task.title like '%${title}%'
+	</if>
+	<if test="approvestatus != null">
+		and task.status = '${approvestatus}'
+	</if>
+
+	<if test="appBeginTime !=null">
+		<![CDATA[ and  task.app_date >= unix_timestamp('${appBeginTime}') ]]>
+	</if>
+	<if test="appEndTime !=null">
+		<![CDATA[ and task.app_date <= unix_timestamp('${appEndTime}') ]]>
+	</if>
+	
+  	order by task.app_date desc, id desc
+  <include refid="BaseDAOImpl.suffixSql"/> 
+  </select>
+  
+  
+  <select id="myTaskList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  <include refid="BaseDAOImpl.prefixSql"/>
+  
+  	SELECT 
+		task.id,
+		task.title,
+		task.business_id businessId,
+		task.business_type businessType,
+		task.participant_id participantId,
+		DATE_FORMAT(FROM_UNIXTIME(task.app_date),'%Y-%c-%e %H:%i:%s') appDate,
+		task.apply_user_id applyUserId,
+		u.name applyUserName,
+		task.t_organization_id tOrganizationId,
+		task.status,
+		pro.codename statusName,
+		DATE_FORMAT(FROM_UNIXTIME(task.make_time),'%Y-%c-%e %H:%i:%s') make_time,/*创建时间*/
+		DATE_FORMAT(FROM_UNIXTIME(task.operate_time),'%Y-%c-%e %H:%i:%s') operateTime /*上次操作此流程的时间*/
+	
+	FROM t_workflow_task task 
+	LEFT JOIN t_user u ON u.id = task.apply_user_id
+	LEFT JOIN t_properties pro ON pro.code = task.status AND pro.codetype = 'workflowtask_status'
+	
+	WHERE task.participant_id = ${cur_userid} 
+		  and task.status = '01'
+  	
+  	<if test="title != null">
+		and task.title like '%${title}%'
+	</if>
+	<if test="appBeginTime !=null">
+		<![CDATA[ and  task.app_date >= unix_timestamp('${appBeginTime}') ]]>
+	</if>
+	<if test="appEndTime !=null">
+		<![CDATA[ and task.app_date <= unix_timestamp('${appEndTime}') ]]>
+	</if>
+	
+  	order by task.app_date desc, id desc
+  <include refid="BaseDAOImpl.suffixSql"/> 
+  </select>
+  
+  
+  
+  <select id="myFinishTaskList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  <include refid="BaseDAOImpl.prefixSql"/>
+  
+  	SELECT   DISTINCT
+		task.id,
+		task.title,
+		task.business_id businessId,
+		task.business_type businessType,
+		task.cur_step curStep,
+		task.participant_id participantId,
+		DATE_FORMAT(FROM_UNIXTIME(task.app_date),'%Y-%c-%e %H:%i:%s') appDate,
+		task.apply_user_id applyUserId,
+		u.name applyUserName,
+		task.t_organization_id tOrganizationId,
+		task.status,
+		pro.codename statusName,
+		DATE_FORMAT(FROM_UNIXTIME(task.make_time),'%Y-%c-%e %H:%i:%s') make_time
+	
+	FROM t_workflow_task task 
+	LEFT JOIN t_user u ON u.id = task.apply_user_id
+	LEFT JOIN t_properties pro ON pro.code = task.status AND pro.codetype = 'workflowtask_status'
+	LEFT JOIN t_workflow_task_detail taskdetail ON  taskdetail.t_workflow_task_id = task.id
+	
+	WHERE taskdetail.operator_id = ${cur_userid} 
+  		  And taskdetail.operator_type  = '04' /*01提交申请  02通过 03退回  04确认*/
+  	<if test="title != null">
+		and task.title like '%${title}%'
+	</if>
+	<if test="appBeginTime !=null">
+		<![CDATA[ and  task.app_date >= unix_timestamp('${appBeginTime}') ]]>
+	</if>
+	<if test="appEndTime !=null">
+		<![CDATA[ and task.app_date <= unix_timestamp('${appEndTime}') ]]>
+	</if>
+	
+  	order by task.app_date desc, id desc
+  <include refid="BaseDAOImpl.suffixSql"/> 
+  </select>
+  
+  
+  <select id="myProcessTaskList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  <include refid="BaseDAOImpl.prefixSql"/>
+  SELECT   DISTINCT
+		task.id,
+		task.title,
+		task.business_id businessId,
+		task.business_type businessType,
+		task.cur_step curStep,
+		task.participant_id participantId,
+		DATE_FORMAT(FROM_UNIXTIME(task.app_date),'%Y-%c-%e %H:%i:%s') appDate,
+		task.apply_user_id applyUserId,
+		u.name applyUserName,
+		task.t_organization_id tOrganizationId,
+		task.status,
+		pro.codename statusName,
+		DATE_FORMAT(FROM_UNIXTIME(task.make_time),'%Y-%c-%e %H:%i:%s') make_time
+	
+	FROM t_workflow_task task 
+	LEFT JOIN t_user u ON u.id = task.apply_user_id
+	LEFT JOIN t_properties pro ON pro.code = task.status AND pro.codetype = 'workflowtask_status'
+	LEFT JOIN t_workflow_task_detail taskdetail ON  taskdetail.t_workflow_task_id = task.id
+	
+	WHERE taskdetail.operator_id = ${cur_userid} 
+  		  And taskdetail.operator_type in ('02','03') /*01提交申请  02通过 03退回  04确认*/
+  	<if test="title != null">
+		and task.title like '%${title}%'
+	</if>
+	<if test="appBeginTime !=null">
+		<![CDATA[ and  task.app_date >= unix_timestamp('${appBeginTime}') ]]>
+	</if>
+	<if test="appEndTime !=null">
+		<![CDATA[ and task.app_date <= unix_timestamp('${appEndTime}') ]]>
+	</if>
+	
+  	order by task.app_date desc, id desc
+  	
+  	
+  <include refid="BaseDAOImpl.suffixSql"/> 
+  </select>
+  
+  
+  <select id="detailComments" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  SELECT 
+	CONCAT(u.name,'(',u.login_name,')') uname,
+	 DATE_FORMAT(FROM_UNIXTIME(d.make_time),'%Y-%c-%e %H:%i:%s') time2,
+	 (CASE d.operator_type
+	   WHEN '01' THEN '提交流程'
+	   WHEN '02' THEN '提交下一审批人'
+	   WHEN '03' THEN '退回流程'
+	   WHEN '04' THEN '确认通过'
+	   END
+	) operate,
+	COMMENT comment2
+	FROM t_workflow_task_detail d 
+	LEFT JOIN t_user u ON u.id = d.operator_id
+	WHERE d.t_workflow_task_id = ${workflowtaskid}
+  
+  </select>
+  
+  
+  
+</mapper>

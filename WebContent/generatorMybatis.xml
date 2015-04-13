@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="E:\mysql-connector-java-5.1.7-bin.jar" />
+
+  <context id="MybatisWt" targetRuntime="MyBatis3">
+  <!-- aliyun
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://rds6vmnyyruvqib.mysql.rds.aliyuncs.com:3306/ru68h6qib6lpn4ih"
+        userId="ru68h6qib6lpn4ih"
+        password="wt111111">
+    </jdbcConnection>
+     -->
+     <!-- localhost -->
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/assurance"
+        userId="root"
+        password="111111">
+    </jdbcConnection>
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.ass.common.generated.model" targetProject="assurance/src">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="com.ass.common.generated.xml"  targetProject="assurance/src">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ass.common.generated.dao"  targetProject="assurance/src">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    
+    <!-- 
+	<table schema="" tableName="t_permission" domainObjectName="TPermission" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_properties" domainObjectName="TProperties" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_role" domainObjectName="TRole" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_role_permission" domainObjectName="TRolePermission" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_user" domainObjectName="TUser" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_user_role" domainObjectName="TUserRole" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_organization" domainObjectName="TOrganization" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_log" domainObjectName="TLog" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_log_detail" domainObjectName="TLogDetail" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_attachment" domainObjectName="TAttachment" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_customer" domainObjectName="TCustomer" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_vacation" domainObjectName="TVacation" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_workflow_task" domainObjectName="TWorkflowTask" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_workflow_task_detail" domainObjectName="TWorkflowTaskDetail" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_usual_approver" domainObjectName="TUsualApprover" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_travel" domainObjectName="TTravel" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	<table schema="" tableName="t_apply_money" domainObjectName="TApplyMoney" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	 -->
+	<table schema="" tableName="t_apply_money" domainObjectName="TApplyMoney" >
+		<generatedKey column="id" sqlStatement="mysql" identity="true" />
+	</table>
+	
+	
+	<!--sqlStatement  的两种写法都可以
+	<table schema="" tableName="db_company" domainObjectName="DbCompany"  >
+		<generatedKey column="db_company_id" sqlStatement="mysql" identity="true" />
+	</table> 
+	<generatedKey column="db_company_id" sqlStatement="select max(db_company_id) from db_company" identity="true" />
+	 -->
+  </context>
+</generatorConfiguration>

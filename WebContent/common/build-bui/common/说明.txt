@@ -1,0 +1,12 @@
+使用的min文件.
+common文件夹从框架项目里复制出来 
+1
+<link href="${ctx }common/build-bui/css/main-min-Manager.css" rel="stylesheet" type="text/css" />
+2
+common/build-bui/img
+
+3 此文件
+
+4main.jsp
+
+
