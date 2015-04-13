@@ -7,27 +7,23 @@
 ### 项目功能
 
 一般hr,erp,财务,进销存... 等一系列业务系统都需要有的共通的功能,例如:
-*员工管理
-
-*组织机构管理
-
-*流程申请
-
-*申请汇总
-
-*excel导出
+* 员工管理
+* 组织机构管理
+* 流程申请
+* 申请汇总
+* excel导出
 
 等. 
 本项目包括以上功能,可在此基础上继续开发.
 
 ###使用技术
-*springmvc
-*mybatis
-*shiro
-*bootstrap
-*bui
-*dwr
-*jquery
+* springmvc
+* mybatis
+* shiro
+* bootstrap
+* bui
+* dwr
+* jquery
 
 ### 部署环境前提
 * eclipse
