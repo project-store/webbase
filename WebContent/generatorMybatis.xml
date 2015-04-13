@@ -16,7 +16,7 @@
      -->
      <!-- localhost -->
 	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/assurance"
+        connectionURL="jdbc:mysql://localhost:3306/webbase"
         userId="root"
         password="111111">
     </jdbcConnection>
@@ -24,16 +24,16 @@
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.ass.common.generated.model" targetProject="assurance/src">
+    <javaModelGenerator targetPackage="com.ass.common.generated.model" targetProject="webbase/src">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="com.ass.common.generated.xml"  targetProject="assurance/src">
+    <sqlMapGenerator targetPackage="com.ass.common.generated.xml"  targetProject="webbase/src">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ass.common.generated.dao"  targetProject="assurance/src">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ass.common.generated.dao"  targetProject="webbase/src">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     

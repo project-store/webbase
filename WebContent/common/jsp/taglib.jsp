@@ -18,8 +18,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}/"/>
 
 <!-- 
-${root}:   http://localhost:8080/assurance/
-${ctx}:    /assurance/ 
+${root}:   http://localhost:8080/webbase/
+${ctx}:    /webbase/ 
 -->
 
 <!-- bootstrap 加载顺序不能错  1bootstrap.css  2jquery.js  3bootstrap.js 

@@ -10,10 +10,10 @@
 <body>
 这里是首页
 <br/>
-用户管理http://localhost:8080/assurance/ass/basicmanage/userManager.jsp<br/>
-组织机构http://localhost:8080/assurance/ass/basicmanage/organizationManager.jsp<br/>
-角色权限http://localhost:8080/assurance/rolePermission.do?action=initRolePermission<br/>
-日志管理http://localhost:8080/assurance/ass/basicmanage/log.jsp<br/>
+用户管理http://localhost:8080/webbase/ass/basicmanage/userManager.jsp<br/>
+组织机构http://localhost:8080/webbase/ass/basicmanage/organizationManager.jsp<br/>
+角色权限http://localhost:8080/webbase/rolePermission.do?action=initRolePermission<br/>
+日志管理http://localhost:8080/webbase/ass/basicmanage/log.jsp<br/>
 <br/>
 <shiro:guest>  
 访客未认证
