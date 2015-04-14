@@ -36,8 +36,6 @@
 
 下载地址: https://git.oschina.net/wangt/webbase.git
 
-jar包总共几十M,下载时候可能略慢请稍等.
-
 导入到eclipse中的具体配置同一般web项目.有问题可联系313949522.
 
 项目访问目录为 main.jsp.
