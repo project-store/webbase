@@ -42,13 +42,12 @@
 
 ###相关文章
 
-[http://blog.csdn.net/mamba10/article/details/17592981](Spring SpringMvc 3.0 + MyBatis 整合 )
+[Spring SpringMvc 3.0 + MyBatis 整合 ](http://blog.csdn.net/mamba10/article/details/17592981)
 
 
-[http://blog.csdn.net/mamba10/article/details/45055917](Spring SpringMvc 3.0 + MyBatis 整合--补充关于.properties文件的读取 )
+[Spring SpringMvc 3.0 + MyBatis 整合--补充关于.properties文件的读取 ](http://blog.csdn.net/mamba10/article/details/45055917)
 
-[http://blog.csdn.net/mamba10/article/details/41847619](dwr 3.0 配置 + 不同参数，不同返回值调用方法 示例 )
-
+[dwr 3.0 配置 + 不同参数，不同返回值调用方法 示例 ](http://blog.csdn.net/mamba10/article/details/41847619)
 
 
 ## 演示地址
