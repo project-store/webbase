@@ -1,5 +1,5 @@
-/.settings
+/.settings/
 
+classes/
 
-
-/WebContent/WEB-INF/classes
+*.class
