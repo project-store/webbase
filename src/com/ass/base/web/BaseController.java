@@ -10,16 +10,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ass.base.model.BaseClass;
-import com.ass.base.prop.MyPropertyConfigurer;
-import com.ass.common.utils.DateUtil;
 import com.ass.common.utils.StringUtil;
-import com.ass.shiro.dto.CurUser;
 
 public class BaseController extends BaseClass{
 	

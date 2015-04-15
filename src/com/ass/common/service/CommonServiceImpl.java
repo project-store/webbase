@@ -19,7 +19,6 @@ import com.ass.base.model.PageGrid;
 import com.ass.base.model.PageQueryModel;
 import com.ass.base.prop.MyPropertyConfigurer;
 import com.ass.base.service.BaseServiceImpl;
-import com.ass.common.utils.StringUtil;
 
 @Service
 //@Scope("prototype")
